@@ -2,7 +2,27 @@
  * Classe Joueur
  * Représente un joueur avec son nom et son score.
  */
-class Joueur {
+export class Joueur {
+    #nom
+    #score
+
+
+    constructor(nom, score) {
+        this.#nom = nom;
+        this.#score = score;
+
+    }
+
+
+    set nom(value) {
+        this.#nom = value;
+    }
+
+    set score(value) {
+        this.#score = value;
+    }
+
+
 
 
     /**
