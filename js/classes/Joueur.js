@@ -23,7 +23,13 @@ export class Joueur {
     }
 
 
+ajouterPoint(){
+        this.#score++
+}
 
+    reinitialiser(){
+        this.#score = 0
+    }
 
     /**
      * Compare le score avec un autre joueur.
@@ -31,5 +37,14 @@ export class Joueur {
      * @returns {number} 1 si supérieur, -1 si inférieur, 0 si égalité
      */
     comparerA(autre) {
+
+        if(this.#score > autre.#score ){
+            return 1
+        }
+        if(this.#score < autre.#score){
+            return -1
+        }
+        return 0
+
     }
 }
