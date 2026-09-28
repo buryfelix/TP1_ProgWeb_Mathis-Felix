@@ -3,7 +3,10 @@
 // =============================================================================
 
 import {
-    TEMPLATE_BIENVENUE
+    TEMPLATE_BADGE_JOUEUR,
+    TEMPLATE_BIENVENUE,
+    TEMPLATE_QUIZ,
+    TEMPLATE_OPTION
 } from "../VuesDynamiques.js";
 import {handleDemarrer, handleQuestionSuivante, handleRecommancer} from "../evenements.js";
 
@@ -75,6 +78,29 @@ export class VueQuiz {
     // ---------- Écran de quiz ----------
     #afficheQuiz() {
 
+        let q = this.#quiz.questionActuelle;
+
+        // Construction des choix de réponse
+        let htmlOptions = '';
+        for (let i = 0; i < q.options.length; i++) {
+            const option = q.options[i];
+            let estRepondu = false; //TEMPORAIRE
+            let reponseChoisie = false; //TEMPORAIRE
+            const classes = this.#determinerClasseAppropriee(i, q, estRepondu, reponseChoisie);
+            htmlOptions += '' + TEMPLATE_OPTION(classes, i, q.lettreA(i), option);
+        }
+
+        // Construction des Badges joueurs
+
+        let htmlJoueurs = '';
+        for (let i = 0; i < this.#nomsJoueurs.length; i++) {
+            htmlJoueurs += '' + TEMPLATE_BADGE_JOUEUR(this.#nomsJoueurs[i], 0)
+        }
+
+        // Construction du Quiz avec htmlOptions et les Badges des joueurs
+
+
+        this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.enonce, htmlOptions);
 
         document.getElementById('nextBtn').addEventListener('click',
             (ev) => {
