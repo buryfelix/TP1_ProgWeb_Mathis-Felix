@@ -26,8 +26,10 @@ export const TEMPLATE_OPTION = (classes, index, lettre, option) => `
 `;
 
 // Compléter TEMPLATE_BADGE_JOUEUR
-export const TEMPLATE_BADGE_JOUEUR = (nom, score) => `
-<div class="player-badge ${nom}">${nom}
+export const TEMPLATE_BADGE_JOUEUR = (nom, score,estActive) => `
+<div class="player-badge ${estActive ? 'active' : ''}">
+
+<div class="nom">${nom}</div>
     <div class="score">${score}</div>
 </div>
 

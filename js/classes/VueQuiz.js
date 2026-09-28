@@ -96,7 +96,9 @@ export class VueQuiz {
 
         let htmlJoueurs = '';
         for (let i = 0; i < this.#nomsJoueurs.length; i++) {
-            htmlJoueurs += '' + TEMPLATE_BADGE_JOUEUR(this.#nomsJoueurs[i], 0)
+            let actif = this.#quiz.indexJoueurActuel;
+            actif = actif === i;
+            htmlJoueurs += '' + TEMPLATE_BADGE_JOUEUR(this.#nomsJoueurs[i], 0, actif)
         }
 
         // Construction du Quiz avec htmlOptions et les Badges des joueurs
