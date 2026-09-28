@@ -90,6 +90,8 @@ export class VueQuiz {
             htmlOptions += '' + TEMPLATE_OPTION(classes, i, q.lettreA(i), option);
         }
 
+        //NOTE: UTILISER handleChoixDeReponse pour le clic de bouton Options
+
         // Construction des Badges joueurs
 
         let htmlJoueurs = '';
