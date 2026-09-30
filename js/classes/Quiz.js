@@ -153,7 +153,7 @@ if(!this.#estRepondu){
     return;
 }
 
-this.#questionsAVenir.splice(this.#reponsesChoisies,1);
+this.#questionsAVenir.splice(this.#indexQuestionActuelle,1);
 
 if (this.#questionsAVenir.length === 0){
     this.#estTermine = true;

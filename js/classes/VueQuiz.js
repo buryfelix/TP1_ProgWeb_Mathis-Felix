@@ -8,7 +8,7 @@ import {
     TEMPLATE_QUIZ,
     TEMPLATE_OPTION
 } from "../VuesDynamiques.js";
-import {handleDemarrer, handleQuestionSuivante, handleRecommancer} from "../evenements.js";
+import {handleDemarrer, handleQuestionSuivante, handleChoixDeReponse, handleRecommancer} from "../evenements.js";
 
 /**
  * Classe VueQuiz
@@ -106,9 +106,19 @@ export class VueQuiz {
 
         this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.enonce, htmlOptions);
 
-        document.getElementById('nextBtn').addEventListener('click',
-            (ev) => {
-                handleQuestionSuivante(ev, quiz)
+        const choixReponses = this.#conteneur.querySelectorAll('.option-btn');
+        choixReponses.forEach((choix) => {
+            choix.addEventListener('click', (ev) => {
+                    handleChoixDeReponse(ev, this.#quiz);
+                }
+            );
+        });
+
+        const boutonSuivant = document.getElementById('nextBtn');
+        boutonSuivant.disabled = !this.#quiz.estRepondu;
+
+        boutonSuivant.addEventListener('click', (ev) => {
+                handleQuestionSuivante(ev, this.#quiz);
             }
         );
     }
