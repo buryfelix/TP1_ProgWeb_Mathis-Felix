@@ -104,7 +104,7 @@ export class VueQuiz {
         // Construction du Quiz avec htmlOptions et les Badges des joueurs
 
 
-        this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.etiquette, htmlOptions);
+        this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.enonce, htmlOptions);
 
         document.getElementById('nextBtn').addEventListener('click',
             (ev) => {
