@@ -31,6 +31,7 @@ export const TEMPLATE_BADGE_JOUEUR = (nom, score,estActive) => `
 
 <div class="nom">${nom}</div>
     <div class="score">${score}</div>
+    <div class="indicator"> ${estActive ? '🎯 À vous !' : ''}</div>
 </div>
 
 `;

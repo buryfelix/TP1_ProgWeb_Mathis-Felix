@@ -80,12 +80,12 @@ export class VueQuiz {
 
         let q = this.#quiz.questionActuelle;
 
+        let estRepondu = this.#quiz.estRepondu;
+        let reponseChoisie = this.#quiz.reponseChoisie;
         // Construction des choix de réponse
         let htmlOptions = '';
         for (let i = 0; i < q.options.length; i++) {
             const option = q.options[i];
-            let estRepondu = false; //TEMPORAIRE
-            let reponseChoisie = false; //TEMPORAIRE
             const classes = this.#determinerClasseAppropriee(i, q, estRepondu, reponseChoisie);
             htmlOptions += '' + TEMPLATE_OPTION(classes, i, q.lettreA(i), option);
         }
@@ -98,13 +98,13 @@ export class VueQuiz {
         for (let i = 0; i < this.#nomsJoueurs.length; i++) {
             let actif = this.#quiz.indexJoueurActuel;
             actif = actif === i;
-            htmlJoueurs += '' + TEMPLATE_BADGE_JOUEUR(this.#nomsJoueurs[i], 0, actif)
+            htmlJoueurs += '' + TEMPLATE_BADGE_JOUEUR(this.#nomsJoueurs[i], this.#quiz.joueurs[i].score, actif);
         }
 
         // Construction du Quiz avec htmlOptions et les Badges des joueurs
 
 
-        this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.enonce, htmlOptions);
+        this.#conteneur.innerHTML = TEMPLATE_QUIZ(htmlJoueurs, q.etiquette, htmlOptions);
 
         document.getElementById('nextBtn').addEventListener('click',
             (ev) => {

@@ -23,6 +23,9 @@ export function handleDemarrer(ev, vue) {
 
 export function handleChoixDeReponse(ev, quiz) {
 // A COMPLÉTER
+    const option = ev.currentTarget;
+    const index = Number(option.dataset.index);
+    quiz.repondre(index)
 }
 
 export function handleQuestionSuivante(ev, quiz) {

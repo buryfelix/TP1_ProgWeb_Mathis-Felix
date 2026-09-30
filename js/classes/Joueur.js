@@ -7,27 +7,26 @@ export class Joueur {
     #score
 
 
-    constructor(nom, score) {
+    constructor(nom) {
         this.#nom = nom;
-        this.#score = score;
+        this.#score = 0;
 
     }
 
-
-    set nom(value) {
-        this.#nom = value;
+    get nom() {
+        return this.#nom;
     }
 
-    set score(value) {
-        this.#score = value;
+    get score() {
+        return this.#score;
     }
 
 
-ajouterPoint(){
+    ajouterPoint() {
         this.#score++
-}
+    }
 
-    reinitialiser(){
+    reinitialiser() {
         this.#score = 0
     }
 
@@ -38,10 +37,10 @@ ajouterPoint(){
      */
     comparerA(autre) {
 
-        if(this.#score > autre.#score ){
+        if (this.#score > autre.#score) {
             return 1
         }
-        if(this.#score < autre.#score){
+        if (this.#score < autre.#score) {
             return -1
         }
         return 0

@@ -129,7 +129,19 @@ export class Quiz {
      * @param {number} indexSelectionne
      */
     repondre(indexSelectionne) {
+        if (this.#estRepondu) {
+            return;
+        }
+        if (!Number.isInteger(indexSelectionne) || indexSelectionne < 0 || indexSelectionne >= this.questionActuelle.options.length) {
+            return;
+        }
+        this.#reponsesChoisies[this.#indexQuestionActuelle] = indexSelectionne;
+        this.#estRepondu = true;
+        if (this.questionActuelle.estCorrect(indexSelectionne)) {
+            this.joueurActuel.ajouterPoint();
 
+        }
+        this.#rafraichirAffichage();
     }
 
     /**
@@ -137,6 +149,22 @@ export class Quiz {
      * Termine le quiz si on était à la dernière question.
      */
     suivant() {
+if(!this.#estRepondu){
+    return;
+}
+
+this.#questionsAVenir.splice(this.#reponsesChoisies,1);
+
+if (this.#questionsAVenir.length === 0){
+    this.#estTermine = true;
+    this.#rafraichirAffichage();
+return;
+}
+this.#indexJoueurActuel = 1 - this.#indexJoueurActuel;
+this.#indexQuestionActuelle = this.#trouveNombreAleatoire(0, this.#questionsAVenir.length - 1)();
+
+this.#estRepondu = false;
+this.#rafraichirAffichage();
 
     }
 
