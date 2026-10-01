@@ -6,7 +6,7 @@ import {
     TEMPLATE_BADGE_JOUEUR,
     TEMPLATE_BIENVENUE,
     TEMPLATE_QUIZ,
-    TEMPLATE_OPTION
+    TEMPLATE_OPTION, TEMPLATE_RESULTAT, TEMPLATE_JOUEUR_RESULTAT
 } from "../VuesDynamiques.js";
 import {handleDemarrer, handleQuestionSuivante, handleChoixDeReponse, handleRecommancer} from "../evenements.js";
 
@@ -118,6 +118,10 @@ export class VueQuiz {
         boutonSuivant.disabled = !this.#quiz.estRepondu;
 
         boutonSuivant.addEventListener('click', (ev) => {
+
+                if (Math.abs(this.#quiz.joueurs[0].score - this.#quiz.joueurs[1].score) === 2 ){
+                    this.#afficheResultat()
+                }
                 handleQuestionSuivante(ev, this.#quiz);
             }
         );
@@ -125,8 +129,6 @@ export class VueQuiz {
 
     // ---------- Écran de résultat ----------
     #afficheResultat() {
-
-
     }
 
     // ---------- Utilitaires ----------

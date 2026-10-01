@@ -149,22 +149,22 @@ export class Quiz {
      * Termine le quiz si on était à la dernière question.
      */
     suivant() {
-if(!this.#estRepondu){
-    return;
-}
+        if (!this.#estRepondu) {
+            return;
+        }
 
-this.#questionsAVenir.splice(this.#indexQuestionActuelle,1);
+        this.#questionsAVenir.splice(this.#indexQuestionActuelle, 1);
 
-if (this.#questionsAVenir.length === 0){
-    this.#estTermine = true;
-    this.#rafraichirAffichage();
-return;
-}
-this.#indexJoueurActuel = 1 - this.#indexJoueurActuel;
-this.#indexQuestionActuelle = this.#trouveNombreAleatoire(0, this.#questionsAVenir.length - 1)();
+        if (this.#questionsAVenir.length === 0) {
+            this.#estTermine = true;
+            this.#rafraichirAffichage();
+            return;
+        }
+        this.#indexJoueurActuel = 1 - this.#indexJoueurActuel;
+        this.#indexQuestionActuelle = this.#trouveNombreAleatoire(0, this.#questionsAVenir.length - 1)();
 
-this.#estRepondu = false;
-this.#rafraichirAffichage();
+        this.#estRepondu = false;
+        this.#rafraichirAffichage();
 
     }
 
