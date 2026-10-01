@@ -147,15 +147,17 @@ export class Quiz {
     /**
      * Passe à la question suivante et au joueur suivant.
      * Termine le quiz si on était à la dernière question.
+     * Termine le quiz si écart de deux
      */
-    suivant() {
+    suivant(score1, score2) {
         if (!this.#estRepondu) {
             return;
         }
 
         this.#questionsAVenir.splice(this.#indexQuestionActuelle, 1);
 
-        if (this.#questionsAVenir.length === 0) {
+
+        if (Math.abs(score1 - score2) === 2) {
             this.#estTermine = true;
             this.#rafraichirAffichage();
             return;

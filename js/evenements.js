@@ -16,7 +16,6 @@ export function handleDemarrer(ev, vue) {
         if (vue && typeof vue.definirNomsJoueurs === 'function') {
             vue.definirNomsJoueurs(p1, p2);
         }
-
         vue.quiz.demarrer(p1, p2);
     }
 }
@@ -28,10 +27,10 @@ export function handleChoixDeReponse(ev, quiz) {
     quiz.repondre(index)
 }
 
-export function handleQuestionSuivante(ev, quiz) {
+export function handleQuestionSuivante(ev, quiz, score1, score2) {
     const boutonSuivant = ev.target;
     if (!boutonSuivant.disabled) {
-        quiz.suivant();
+        quiz.suivant(score1, score2);
     }
 }
 

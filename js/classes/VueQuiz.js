@@ -119,16 +119,40 @@ export class VueQuiz {
 
         boutonSuivant.addEventListener('click', (ev) => {
 
-                if (Math.abs(this.#quiz.joueurs[0].score - this.#quiz.joueurs[1].score) === 2 ){
-                    this.#afficheResultat()
-                }
-                handleQuestionSuivante(ev, this.#quiz);
+
+                handleQuestionSuivante(ev, this.#quiz, this.#quiz.joueurs[0].score, this.#quiz.joueurs[1].score);
             }
         );
     }
 
     // ---------- Écran de résultat ----------
     #afficheResultat() {
+
+        let joueurGagnant = [false, true, this.#quiz.joueurs[1].nom];
+        let htmlJoueurResultat = '';
+
+        if (this.#quiz.joueurs[0].score > this.#quiz.joueurs[1].score) {
+            joueurGagnant[0] = true;
+            joueurGagnant[1] = false;
+            joueurGagnant[2] = this.#quiz.joueurs[0].nom;
+        }
+
+        for (let i = 0; i < this.#nomsJoueurs.length; i++) {
+            htmlJoueurResultat += '' + TEMPLATE_JOUEUR_RESULTAT(this.#nomsJoueurs[i], this.#quiz.joueurs[i].score, joueurGagnant[i]);
+        }
+
+        let messageGagnant = `🏆 ${joueurGagnant[2]} remporte la partie!`
+
+        this.#conteneur.innerHTML = TEMPLATE_RESULTAT(htmlJoueurResultat, messageGagnant);
+
+        const boutonRestart = document.getElementById('restartBtn');
+
+        boutonRestart.addEventListener('click', (ev) => {
+
+                handleRecommancer(ev, this.#quiz);
+            }
+        );
+
     }
 
     // ---------- Utilitaires ----------
